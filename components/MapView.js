@@ -393,6 +393,10 @@ var MapView = React.createClass({
     this._runCommand('animateToCoordinate', [latLng, duration || 500]);
   },
 
+  convertToCoordinates: function(arr) {
+    return this._runCommand('convertToCoordinates', [arr]);
+},
+
   fitToElements: function(animated) {
     this._runCommand('fitToElements', [animated]);
   },
@@ -415,7 +419,7 @@ var MapView = React.createClass({
   _runCommand: function (name, args) {
     switch (Platform.OS) {
       case 'android':
-        NativeModules.UIManager.dispatchViewManagerCommand(
+        return NativeModules.UIManager.dispatchViewManagerCommand(
           this._getHandle(),
           NativeModules.UIManager.AIRMap.Commands[name],
           args
@@ -423,7 +427,7 @@ var MapView = React.createClass({
         break;
 
       case 'ios':
-        NativeModules.AIRMapManager[name].apply(
+        return NativeModules.AIRMapManager[name].apply(
           NativeModules.AIRMapManager[name],
           [this._getHandle(), ...args]
         );
