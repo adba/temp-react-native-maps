@@ -14,6 +14,8 @@ import MapPolyline from './MapPolyline';
 import MapPolygon from './MapPolygon';
 import MapCircle from './MapCircle';
 import MapCallout from './MapCallout';
+import GoogleMapView from './GoogleMapView';
+import GoogleMapMarker from './GoogleMapMarker';
 
 // eslint-disable-next-line react/prefer-es6-class
 const MapView = React.createClass({
@@ -470,5 +472,8 @@ MapView.Circle = MapCircle;
 MapView.Callout = MapCallout;
 
 MapView.Animated = Animated.createAnimatedComponent(MapView);
+
+MapView.GoogleMapView = GoogleMapView;
+MapView.GoogleMapView.Marker = GoogleMapMarker;
 
 module.exports = MapView;

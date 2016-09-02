@@ -11,6 +11,7 @@ let {
 } = ReactNative;
 
 let MapView = require('react-native-maps');
+let { GoogleMapView } = MapView;
 let PriceMarker = require('./PriceMarker');
 
 let { width, height } = Dimensions.get('window');
@@ -21,6 +22,8 @@ const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
+
+// global.nm = ReactNative.NativeModules;
 
 let Event = React.createClass({
   shouldComponentUpdate(nextProps) {
@@ -71,9 +74,12 @@ const DisplayLatLng = React.createClass({
   },
 
   render() {
+    console.log('GoogleMapView',GoogleMapView);
+    console.log('MapView',MapView.GoogleMapView);
+    console.log('MapView',Object.keys(MapView));
     return (
       <View style={styles.container}>
-        <MapView
+        <GoogleMapView
           ref="map"
           style={styles.map}
           initialRegion={this.state.region}
@@ -87,7 +93,7 @@ const DisplayLatLng = React.createClass({
           onMarkerDeselect={this.recordEvent('Map::onMarkerDeselect')}
           onCalloutPress={this.recordEvent('Map::onCalloutPress')}
         >
-          <MapView.Marker
+          <GoogleMapView.Marker
             coordinate={this.state.region}
             onPress={this.recordEvent('Marker::onPress')}
             onSelect={this.recordEvent('Marker::onSelect')}
@@ -103,8 +109,8 @@ const DisplayLatLng = React.createClass({
                 <Text>Well hello there...</Text>
               </View>
             </MapView.Callout>
-          </MapView.Marker>
-        </MapView>
+          </GoogleMapView.Marker>
+        </GoogleMapView>
         <View style={styles.eventList}>
           <ScrollView>
             {this.state.events.map(event => <Event key={event.id} event={event} />)}
