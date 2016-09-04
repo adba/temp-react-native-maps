@@ -77,6 +77,7 @@ const DisplayLatLng = React.createClass({
     console.log('GoogleMapView',GoogleMapView);
     console.log('MapView',MapView.GoogleMapView);
     console.log('MapView',Object.keys(MapView));
+    console.log('region', this.state.region);
     return (
       <View style={styles.container}>
         <GoogleMapView

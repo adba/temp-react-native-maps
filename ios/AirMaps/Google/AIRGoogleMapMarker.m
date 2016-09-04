@@ -3,21 +3,30 @@
 //  AirMaps
 //
 //  Created by Gil Birman on 9/2/16.
-//  Copyright © 2016 Christopher. All rights reserved.
 //
 
 #import "AIRGoogleMapMarker.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation AIRGoogleMapMarker
 
-@synthesize realMarker = _realMarker;
+- (instancetype)init
+{
+  if ((self = [super init])) {
+    _realMarker = [[GMSMarker alloc] init];
+    _realMarker.title = @"AAAAA";
+    _realMarker.snippet = @"BBBBBB";
+  }
+  return self;
+}
 
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
-  self.realMarker.position = coordinate;
+  printf("setCoordinate\n");
+  _realMarker.position = coordinate;
 }
 
 - (CLLocationCoordinate2D)coordinate {
-  return self.realMarker.position;
+  return _realMarker.position;
 }
 
 @end

@@ -42,4 +42,10 @@
   [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
 }
 
+- (void)setInitialRegion:(MKCoordinateRegion)initialRegion {
+  printf("XXooXX\n");
+  _initialRegion = initialRegion;
+}
+
+
 @end

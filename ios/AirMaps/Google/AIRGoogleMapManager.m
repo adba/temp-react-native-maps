@@ -3,7 +3,6 @@
 //  AirMaps
 //
 //  Created by Gil Birman on 9/1/16.
-//  Copyright © 2016 Christopher. All rights reserved.
 //
 
 
@@ -39,28 +38,28 @@ RCT_EXPORT_MODULE()
 
 - (UIView *)view
 {
-//  AIRMap *map = [AIRMap new];
-//  map.delegate = self;
-//
-//  // MKMapView doesn't report tap events, so we attach gesture recognizers to it
-//  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapTap:)];
-//  UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapLongPress:)];
-//  UIPanGestureRecognizer *drag = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapDrag:)];
-//  [drag setMinimumNumberOfTouches:1];
-//  [drag setMaximumNumberOfTouches:1];
-//  // setting this to NO allows the parent MapView to continue receiving marker selection events
-//  tap.cancelsTouchesInView = NO;
-//  longPress.cancelsTouchesInView = NO;
-//
-//  // disable drag by default
-//  drag.enabled = NO;
-//
-//  [map addGestureRecognizer:tap];
-//  [map addGestureRecognizer:longPress];
-//  [map addGestureRecognizer:drag];
-//
-//  printf("AAAAAA")
-//  return map;
+  //  AIRMap *map = [AIRMap new];
+  //  map.delegate = self;
+  //
+  //  // MKMapView doesn't report tap events, so we attach gesture recognizers to it
+  //  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapTap:)];
+  //  UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapLongPress:)];
+  //  UIPanGestureRecognizer *drag = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleMapDrag:)];
+  //  [drag setMinimumNumberOfTouches:1];
+  //  [drag setMaximumNumberOfTouches:1];
+  //  // setting this to NO allows the parent MapView to continue receiving marker selection events
+  //  tap.cancelsTouchesInView = NO;
+  //  longPress.cancelsTouchesInView = NO;
+  //
+  //  // disable drag by default
+  //  drag.enabled = NO;
+  //
+  //  [map addGestureRecognizer:tap];
+  //  [map addGestureRecognizer:longPress];
+  //  [map addGestureRecognizer:drag];
+  //
+  //  printf("AAAAAA")
+  //  return map;
   AIRGoogleMap *map = [AIRGoogleMap new];
   return map;
 
@@ -97,7 +96,7 @@ RCT_EXPORT_MODULE()
 //RCT_EXPORT_VIEW_PROPERTY(onMarkerDrag, RCTDirectEventBlock)
 //RCT_EXPORT_VIEW_PROPERTY(onMarkerDragEnd, RCTDirectEventBlock)
 //RCT_EXPORT_VIEW_PROPERTY(onCalloutPress, RCTDirectEventBlock)
-//RCT_EXPORT_VIEW_PROPERTY(initialRegion, MKCoordinateRegion)
+RCT_EXPORT_VIEW_PROPERTY(initialRegion, MKCoordinateRegion)
 //
 //RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, AIRMap)
 //{
