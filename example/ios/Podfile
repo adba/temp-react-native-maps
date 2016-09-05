@@ -1,0 +1,29 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+
+target 'AirMapsExplorer' do
+	pod 'React', path: '../node_modules/react-native', :subspecs => [
+    	'Core',
+    	'RCTActionSheet',
+    	'RCTGeolocation',
+    	'RCTImage',
+    	'RCTLinkingIOS',
+    	'RCTNetwork',
+    	'RCTSettings',
+    	'RCTText',
+    	'RCTVibration',
+    	'RCTWebSocket'
+  	]
+	pod 'react-native-maps', path: '../node_modules/react-native-maps'
+end
+
+# Crud, this shouldn't be necessary, but https://github.com/CocoaPods/CocoaPods/issues/5429
+
+post_install do |installer|
+  	installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+      		config.build_settings['CLANG_ENABLE_MODULES'] = 'NO'
+    	end
+  	end
+end

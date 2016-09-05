@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactNative = require('react-native');
-var {
+let React = require('react');
+const ReactNative = require('react-native');
+let {
   StyleSheet,
   PropTypes,
   View,
@@ -10,24 +10,27 @@ var {
   ScrollView,
 } = ReactNative;
 
-var MapView = require('react-native-maps');
-var PriceMarker = require('./PriceMarker');
+let MapView = require('react-native-maps');
+let { GoogleMapView } = MapView;
+let PriceMarker = require('./PriceMarker');
 
-var { width, height } = Dimensions.get('window');
+let { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
 const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-var id = 0;
+let id = 0;
 
-var Event = React.createClass({
+// global.nm = ReactNative.NativeModules;
+
+let Event = React.createClass({
   shouldComponentUpdate(nextProps) {
     return this.props.event.id !== nextProps.event.id;
   },
   render() {
-    var { event } = this.props;
+    const { event } = this.props;
     return (
       <View style={styles.event}>
         <Text style={styles.eventName}>{event.name}</Text>
@@ -37,7 +40,7 @@ var Event = React.createClass({
   },
 });
 
-var DisplayLatLng = React.createClass({
+const DisplayLatLng = React.createClass({
   getInitialState() {
     return {
       region: {
@@ -53,14 +56,14 @@ var DisplayLatLng = React.createClass({
   makeEvent(e, name) {
     return {
       id: id++,
-      name: name,
+      name,
       data: e.nativeEvent ? e.nativeEvent : e,
     };
   },
 
   recordEvent(name) {
     return e => {
-      var { events } = this.state;
+      const { events } = this.state;
       this.setState({
         events: [
           this.makeEvent(e, name),
@@ -71,9 +74,13 @@ var DisplayLatLng = React.createClass({
   },
 
   render() {
+    console.log('GoogleMapView',GoogleMapView);
+    console.log('MapView',MapView.GoogleMapView);
+    console.log('MapView',Object.keys(MapView));
+    console.log('region', this.state.region);
     return (
       <View style={styles.container}>
-        <MapView
+        <GoogleMapView
           ref="map"
           style={styles.map}
           initialRegion={this.state.region}
@@ -87,7 +94,7 @@ var DisplayLatLng = React.createClass({
           onMarkerDeselect={this.recordEvent('Map::onMarkerDeselect')}
           onCalloutPress={this.recordEvent('Map::onCalloutPress')}
         >
-          <MapView.Marker
+          <GoogleMapView.Marker
             coordinate={this.state.region}
             onPress={this.recordEvent('Marker::onPress')}
             onSelect={this.recordEvent('Marker::onSelect')}
@@ -103,8 +110,8 @@ var DisplayLatLng = React.createClass({
                 <Text>Well hello there...</Text>
               </View>
             </MapView.Callout>
-          </MapView.Marker>
-        </MapView>
+          </GoogleMapView.Marker>
+        </GoogleMapView>
         <View style={styles.eventList}>
           <ScrollView>
             {this.state.events.map(event => <Event key={event.id} event={event} />)}
@@ -115,13 +122,9 @@ var DisplayLatLng = React.createClass({
   },
 });
 
-var styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
